@@ -15,6 +15,7 @@ App running at [https://mparismap.herokuapp.com/](https://mparismap.herokuapp.co
 * Been getting all routes from within OSM
 * Preliminary mapping of best route based on trees
 * Trees and lighting are put in
+* Add shadows
 
 ## Todo
 
