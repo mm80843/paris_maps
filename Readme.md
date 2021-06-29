@@ -1,6 +1,6 @@
 # MyWay in Paris
 
-App running at [https://mparismap.herokuapp.com/](https://mparismap.herokuapp.com/) .
+App running at [https://mparismap.herokuapp.com/](https://mparismap.herokuapp.com/) . 
 
 ## Content
 
