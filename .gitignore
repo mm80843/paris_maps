@@ -1,3 +1,4 @@
 *.ipynb_checkpoints
 cache/
 data/data_original/
+data/BoI.pkl
