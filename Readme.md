@@ -77,3 +77,17 @@ App running at [https://mparismap.herokuapp.com/](https://mparismap.herokuapp.co
   * Luc: home->work (day), then work->home night (shadows, light)
   * Anna: montmartre->b&b in 19th : trees and lights
   * Laure: South of 12th -> la villette
+
+# Logs and ideas
+
+## 20210723 Starting
+
+* Been preparing the code as in a python standalone module.
+  * Code as usual is in the "module" folder, here "pypama" (python paris maps)
+  * Version is generated from the module itself, as in the pypama/version.py file
+  * Adding binaries (the data pickles as part of the module in MANIFEST.in)
+  * Added a setup.py file to generate the module
+  * gitignore file prepared to exclude all "useless" bits from the repo
+  * Added some support scripts ([build](build.sh) and [install](install.sh) to generate the module)
+* Discovered how to [generate a requirements.txt file](https://stackoverflow.com/questions/31684375/automatically-create-requirements-txt) for projects. Useful, and added in the [createReqs.sh](createReqs.sh) script.
+* From there, preparing a "TestingModule" notebook to try out changes in the module as the same time it's tested. The `%load_ext autoreload %autoreload 2` magic comes in handy to avoid reloading everything at the same time.
