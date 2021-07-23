@@ -1,6 +1,6 @@
 import networkx as nx
 import osmnx as ox 
- 
+import os
 import pandas as pd  
 import numpy as np
 import plotly.graph_objects as go 
@@ -12,11 +12,14 @@ from functools import wraps
 import pickle5 as pickle 
 
 def loadFiles():
-    with open('../pkls/Gf.pklz', 'rb') as input:
+    fn = os.path.join(os.path.dirname(__file__), '../pkls/Gf.pklz')
+    with open(fn, 'rb') as input:
         graph = pickle.load(input)
-    with open('../pkls/ToI.pklz', 'rb') as input:
+    fn = os.path.join(os.path.dirname(__file__), '../pkls/ToI.pklz')
+    with open(fn, 'rb') as input:
         trees = pickle.load(input)
-    with open('../pkls/LoI.pklz', 'rb') as input:
+    fn = os.path.join(os.path.dirname(__file__), '../pkls/LoI.pklz')
+    with open(fn, 'rb') as input:
         lights = pickle.load(input)
     nodes , streets = ox.utils_graph.graph_to_gdfs(graph)
     return graph, nodes, streets, lights, trees, graph
@@ -27,6 +30,7 @@ class parisMap:
         """Init
         """ 
         self.graph, self.nodes, self.streets, self.lights, self.trees, self.graph = loadFiles()
+        # Values for FROM and TO, worth renaming later
         self.HOME = 2.3550362,48.8869476
         self.WORK = 2.3709643,48.8657564
 
