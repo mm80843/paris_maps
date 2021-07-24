@@ -31,30 +31,42 @@ class parisMap:
         """ 
         self.graph, self.nodes, self.streets, self.lights, self.trees, self.graph = loadFiles()
         # Values for FROM and TO, worth renaming later
-        self.HOME = 2.3550362,48.8869476
-        self.WORK = 2.3709643,48.8657564
+        self.HOME = 2.3550362,48.8869476 # Tentative departure
+        self.WORK = 2.3709643,48.8657564 # Tentative arrival
+        self.streets = self.streets.sort_index()
+        self.nodes = self.nodes.sort_index()
+        self.debug = False
 
 
     def getPaths(self,route,gdStreets):
         self.path = []
         for k in range(len(route)-1):
+            # adding all waypoints from the route
+            # https://stackoverflow.com/questions/54307300/what-causes-indexing-past-lexsort-depth-warning-in-pandas
             self.path.append(   geopandas.GeoDataFrame(self.streets.loc[route[k],route[k+1]].loc[0]).T  )
         
         self.path1  = geopandas.GeoDataFrame(pd.concat(self.path),crs="EPSG:4326").to_crs(epsg=3857)
         self.viz = self.path1.buffer(100)
-        
+        # @todo: why two different projections??
         self.path2  = geopandas.GeoDataFrame(pd.concat(self.path),crs="EPSG:4326")
         self.viz2 = self.path2.buffer(0.0005)
 
-        return 1
+        return self.path1,self.viz,self.path2,self.viz2
 
-    def findClosest(self):
-        self.home = ox.distance.nearest_nodes(self.graph, 2.3550362,48.8869476)
-        self.work = ox.distance.nearest_nodes(self.graph, 2.3709643,48.8657564)
+    def findClosest(self,start,end):
+        self.home = ox.distance.nearest_nodes(self.graph, start[0],start[1])
+        self.work = ox.distance.nearest_nodes(self.graph, end[0],end[1])
+        if self.debug:
+            print(self.home,self.work)
+        return self.home, self.work
 
     def calculatePath(self):
         # Calculating subjective length
-        self.streets["vLength"] = self.streets.length / ( 1 + self.streets.trees )
+        self.streets["vLength"] = self.streets.length
+        self.streets["vLength"] = self.streets.vLength / ( 1 + 0.002*self.streets.trees )
+        self.streets["vLength"] = self.streets.vLength / ( 1 + 0.002*self.streets.lights )
+        self.streets["vLength"] = self.streets.vLength / ( 1 + 0.002*self.streets.pgreenspaces )
+        self.streets["vLength"] = self.streets.vLength / ( 1 + 0.002*self.streets.pfreshplaces )      
         # Rebuilding the graph
         self.newG = ox.utils_graph.graph_from_gdfs(self.nodes,self.streets)
 
@@ -62,8 +74,11 @@ class parisMap:
         self.routeShort = nx.shortest_path(self.newG, self.home, self.work, 'length')
         self.routeTrees = nx.shortest_path(self.newG, self.home, self.work, 'vLength')
         # And corresponding geodata
-        pathS,vizS,pS,vS = self.getPaths(self.routeShort,self.gdStreets)
-        pathT,vizT,pT,vT = self.getPaths(self.routeTrees,self.gdStreets)
+        self.pathS,self.vizS,self.pS,self.vS = self.getPaths(self.routeShort,self.streets)
+        self.pathT,self.vizT,self.pT,self.vT = self.getPaths(self.routeTrees,self.streets)
+        
+        return 1
+
 
 def plot_path(G, origin_point, destination_point, routeTrees, routeShort, ToI, LoI, vT):
     
