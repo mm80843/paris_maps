@@ -88,6 +88,12 @@ App running at [https://mparismap.herokuapp.com/](https://mparismap.herokuapp.co
   * Adding binaries (the data pickles as part of the module in MANIFEST.in)
   * Added a setup.py file to generate the module
   * gitignore file prepared to exclude all "useless" bits from the repo
-  * Added some support scripts ([build](build.sh) and [install](install.sh) to generate the module)
-* Discovered how to [generate a requirements.txt file](https://stackoverflow.com/questions/31684375/automatically-create-requirements-txt) for projects. Useful, and added in the [createReqs.sh](createReqs.sh) script.
+  * Added some support scripts ([`build`](build.sh) and [`install`](install.sh) to generate the module)
+* Discovered how to [generate a requirements.txt file](https://stackoverflow.com/questions/31684375/automatically-create-requirements-txt) for projects. Useful, and added in the `[createReqs.sh](createReqs.sh)` script.
 * From there, preparing a "TestingModule" notebook to try out changes in the module as the same time it's tested. The `%load_ext autoreload %autoreload 2` magic comes in handy to avoid reloading everything at the same time.
+
+## 20210724 Going till the app
+
+* Prepared the `99.app.py` launched by `streamlit run 99.app.py`. Opens up an app window to play around with weigths. 
+* Formula in `calculatePath` still needs to be finetuned.
+* 

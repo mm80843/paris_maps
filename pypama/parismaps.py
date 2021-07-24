@@ -60,13 +60,13 @@ class parisMap:
             print(self.home,self.work)
         return self.home, self.work
 
-    def calculatePath(self):
+    def calculatePath(self,pTrees,pLights,pGreenSpace,pFreshplace):
         # Calculating subjective length
         self.streets["vLength"] = self.streets.length
-        self.streets["vLength"] = self.streets.vLength / ( 1 + 0.002*self.streets.trees )
-        self.streets["vLength"] = self.streets.vLength / ( 1 + 0.002*self.streets.lights )
-        self.streets["vLength"] = self.streets.vLength / ( 1 + 0.002*self.streets.pgreenspaces )
-        self.streets["vLength"] = self.streets.vLength / ( 1 + 0.002*self.streets.pfreshplaces )      
+        self.streets["vLength"] = self.streets.vLength / ( 1 + pTrees*self.streets.trees/1000.0 )
+        self.streets["vLength"] = self.streets.vLength / ( 1 + pLights*self.streets.lights/1000.0 )
+        self.streets["vLength"] = self.streets.vLength / ( 1 + pGreenSpace*self.streets.pgreenspaces/1000.0 )
+        self.streets["vLength"] = self.streets.vLength / ( 1 + pFreshplace*self.streets.pfreshplaces/1000.0 )      
         # Rebuilding the graph
         self.newG = ox.utils_graph.graph_from_gdfs(self.nodes,self.streets)
 
@@ -77,7 +77,7 @@ class parisMap:
         self.pathS,self.vizS,self.pS,self.vS = self.getPaths(self.routeShort,self.streets)
         self.pathT,self.vizT,self.pT,self.vT = self.getPaths(self.routeTrees,self.streets)
         
-        return 1
+        return self.newG
 
 
 def plot_path(G, origin_point, destination_point, routeTrees, routeShort, ToI, LoI, vT):
