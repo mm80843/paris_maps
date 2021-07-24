@@ -94,6 +94,16 @@ App running at [https://mparismap.herokuapp.com/](https://mparismap.herokuapp.co
 
 ## 20210724 Going till the app
 
-* Prepared the `99.app.py` launched by `streamlit run 99.app.py`. Opens up an app window to play around with weigths. 
-* Formula in `calculatePath` still needs to be finetuned.
-* 
+* [Release 6e419765](https://github.com/kelu124/paris_maps/commit/6e41976599efbdbb52513d4d637e4ae8b7432cb3)
+  * Prepared the `99.app.py` launched by `streamlit run 99.app.py`. Opens up an app window to play around with weigths. 
+  * Formula in `calculatePath` still needs to be finetuned.
+  * No API yet, just to play around with some of the layers. Caching still to be optimized =) 
+  * v0.0.1 with workable version is released!
+
+# Changelog
+
+### v0.0.1
+
+* First workable version is released!
+* Contains building footprints, shadows, lights, trees, green spaces, water points..
+* Route finding is done!

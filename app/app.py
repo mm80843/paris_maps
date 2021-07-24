@@ -172,4 +172,5 @@ destination_point = (WORK)
 
 fig = plot_path(origin_point, destination_point)
 
+
 st.write(fig)
