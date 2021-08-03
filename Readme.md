@@ -94,7 +94,7 @@ App running at [https://mparismap.herokuapp.com/](https://mparismap.herokuapp.co
 
 ## 20210724 Going till the app
 
-* [Release 6e419765](https://github.com/kelu124/paris_maps/commit/6e41976599efbdbb52513d4d637e4ae8b7432cb3)
+* [Release e74e19ff](https://github.com/kelu124/paris_maps/commit/e74e19ffa31640a1350d60fb7a3c8c3136e7ae27)
   * Prepared the `99.app.py` launched by `streamlit run 99.app.py`. Opens up an app window to play around with weigths. 
   * Text inputs ready for the search
   * Formula in `calculatePath` still needs to be finetuned.
