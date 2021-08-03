@@ -37,7 +37,7 @@ location = geolocator.geocode(END)
 m4p.WORK = location.longitude, location.latitude
 
 start, end = m4p.findClosest(m4p.HOME,m4p.WORK)
-
+#st.write(m4p.HOME,m4p.WORK)
 st.sidebar.write("Calculating paths..")
 m4p.calculatePath(pTrees,pLights,pGreenSpace,pFreshplace)
 st.sidebar.write("Calculating done!")
