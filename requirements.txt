@@ -8,3 +8,7 @@ pandas==0.22.0
 numpy==1.13.3
 geopandas==0.3.0
 geopy==2.1.0
+
+typing-extensions==3.7.4.3
+fastapi==0.66.0
+pydantic==1.8.2
