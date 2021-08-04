@@ -1,0 +1,10 @@
+pickle5==0.0.11
+scipy==0.19.1
+plotly==4.14.3
+Shapely==1.6.4
+networkx==2.5
+osmnx==1.1.1
+pandas==0.22.0
+numpy==1.13.3
+geopandas==0.3.0
+geopy==2.1.0
